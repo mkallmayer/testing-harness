@@ -1,7 +1,6 @@
 package helpers
 
 import (
-	"fmt"
 	"os"
 	"strings"
 )
@@ -13,7 +12,7 @@ func BaseCorpus(files []string) ([][]byte, error) {
 		if err != nil {
 			corpus[i] = b
 		} else {
-			return nil, fmt.Errorf("Could not read %s: %s", f, err.Error())
+			corpus[i] = make([]byte, 1)
 		}
 	}
 	return corpus, nil
