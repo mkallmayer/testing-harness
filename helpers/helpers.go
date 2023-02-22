@@ -6,7 +6,7 @@ import (
 )
 
 type ErrorBlacklist struct {
-	blacklist []string
+	Blacklist []string
 }
 
 func BaseCorpus(files []string) ([][]byte, error) {
@@ -24,7 +24,7 @@ func BaseCorpus(files []string) ([][]byte, error) {
 
 func (b ErrorBlacklist) IsSerious(err error) bool {
 	var serious = true
-	for _, s := range b.blacklist {
+	for _, s := range b.Blacklist {
 		serious = serious && !strings.Contains(err.Error(), s)
 	}
 	return serious
