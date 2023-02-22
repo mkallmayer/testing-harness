@@ -5,6 +5,10 @@ import (
 	"strings"
 )
 
+type ErrorBlacklist struct {
+	blacklist []string
+}
+
 func BaseCorpus(files []string) ([][]byte, error) {
 	corpus := make([][]byte, len(files))
 	for i, f := range files {
@@ -18,10 +22,10 @@ func BaseCorpus(files []string) ([][]byte, error) {
 	return corpus, nil
 }
 
-func IsSerious(err error, blacklist []string) bool {
-	var serious bool = true
-	for _, b := range blacklist {
-		serious = serious && !strings.Contains(err.Error(), b)
+func (b ErrorBlacklist) IsSerious(err error) bool {
+	var serious = true
+	for _, s := range b.blacklist {
+		serious = serious && !strings.Contains(err.Error(), s)
 	}
 	return serious
 }
