@@ -16,10 +16,10 @@ func loadBaseCorpus(files []string) ([][]byte, error) {
 	for i, f := range files {
 		b, err := os.ReadFile(f)
 		if err != nil {
-			corpus[i] = b
-		} else {
 			fmt.Printf("Error while reading corpus file %s: %v", f, err)
 			return corpus, err
+		} else {
+			corpus[i] = b
 		}
 	}
 	return corpus, nil
